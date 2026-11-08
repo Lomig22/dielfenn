@@ -7,7 +7,7 @@
 <meta name="description" content="Dielfenn Conseil accompagne les porteurs de projets innovants (deeptech, healthtech, biotech) et les dirigeants de TPE/PME avant, pendant et après l'incubation. Bretagne, Pays de la Loire, Normandie, Île-de-France, Aquitaine.">
 <meta name="theme-color" content="#0D1117">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,400&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap');
 
 :root {
   --nuit:    #0D1117;
@@ -28,6 +28,7 @@
   --gutter: 32px;
 
   --f-display: 'Syne', 'Helvetica Neue', Arial, sans-serif;
+  --f-hero: 'Fraunces', Georgia, 'Times New Roman', serif;
   --f-body: 'DM Sans', 'Helvetica Neue', Arial, sans-serif;
 
   --pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg stroke='%232E86AB' stroke-opacity='0.06' stroke-width='0.75'%3E%3Cline x1='0' y1='0' x2='40' y2='40'/%3E%3Cline x1='80' y1='0' x2='40' y2='40'/%3E%3Cline x1='0' y1='80' x2='40' y2='40'/%3E%3Cline x1='80' y1='80' x2='40' y2='40'/%3E%3C/g%3E%3Cg fill='%232E86AB' fill-opacity='0.35'%3E%3Ccircle cx='0' cy='0' r='1'/%3E%3Ccircle cx='80' cy='0' r='1'/%3E%3Ccircle cx='0' cy='80' r='1'/%3E%3Ccircle cx='80' cy='80' r='1'/%3E%3Ccircle cx='40' cy='40' r='1'/%3E%3C/g%3E%3C/svg%3E");
@@ -167,28 +168,37 @@ h3 { font-family: var(--f-display); font-weight: 600; color: var(--nuit); line-h
   display: flex; align-items: center;
   padding: calc(var(--nav-h) + 48px) 0 56px;
   background-color: var(--nuit);
-  background-image:
-    radial-gradient(ellipse 60% 50% at 70% 50%, rgba(10,61,98,.5), transparent),
-    var(--pattern);
-  background-size: 100% 100%, 80px 80px;
   overflow: hidden;
 }
-.hero::after { /* Fondu bas pour ancrer les pills */
-  content: ""; position: absolute; inset: auto 0 0 0; height: 160px;
-  background: linear-gradient(to bottom, transparent, rgba(13,17,23,.6)); pointer-events: none;
+/* Photo de fond (Unsplash, libre de droit) — désaturée pour rester dans des tons froids */
+.hero-bg {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: center 40%;
+  filter: saturate(.35) brightness(.85);
+  transform: scale(1.08);
+  animation: heroDrift 24s ease-out forwards;
 }
-.hero-deco {
-  position: absolute; right: -60px; top: 50%; transform: translateY(-50%);
-  width: min(560px, 52vw); opacity: .9; pointer-events: none;
+@keyframes heroDrift { to { transform: scale(1); } }
+/* Voile nuit/océan + motif réseau par-dessus la photo */
+.hero::before {
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background-image:
+    linear-gradient(90deg, rgba(13,17,23,.94) 0%, rgba(13,17,23,.82) 42%, rgba(10,61,98,.45) 100%),
+    var(--pattern);
+  background-size: 100% 100%, 80px 80px;
+}
+.hero::after { /* Fondu bas pour ancrer les pills */
+  content: ""; position: absolute; inset: auto 0 0 0; height: 200px; z-index: 1;
+  background: linear-gradient(to bottom, transparent, rgba(13,17,23,.85)); pointer-events: none;
 }
 .hero .container { position: relative; z-index: 2; display: flex; flex-direction: column; min-height: calc(100vh - var(--nav-h) - 104px); justify-content: center; }
 .hero-content { max-width: 760px; }
 .hero h1 {
-  font-family: var(--f-display); font-weight: 800;
-  font-size: clamp(44px, 6.5vw, 76px); line-height: 1.04; letter-spacing: -.02em;
+  font-family: var(--f-hero); font-weight: 500; font-optical-sizing: auto;
+  font-size: clamp(46px, 7vw, 84px); line-height: 1.02; letter-spacing: -.025em;
   color: #fff;
 }
-.hero h1 .l2 { display: block; color: var(--accent); }
+.hero h1 .l2 { display: block; font-style: italic; font-weight: 400; color: #5FB0D4; }
 .hero .baseline {
   font-family: var(--f-display); font-weight: 400;
   font-size: clamp(18px, 2.5vw, 24px); color: rgba(255,255,255,.55);
@@ -524,7 +534,7 @@ h3 { font-family: var(--f-display); font-weight: 600; color: var(--nuit); line-h
   .cards-3 { gap: 18px; }
   .card { padding: 34px 26px 30px; }
   .contact-grid { gap: 48px; }
-  .hero-deco { opacity: .5; }
+  .hero::before { background-image: linear-gradient(90deg, rgba(13,17,23,.94) 0%, rgba(13,17,23,.85) 55%, rgba(10,61,98,.6) 100%), var(--pattern); }
 }
 
 @media (max-width: 900px) {
@@ -564,7 +574,8 @@ h3 { font-family: var(--f-display); font-weight: 600; color: var(--nuit); line-h
   section { padding: 80px 0; }
   .section-head { margin-bottom: 44px; }
   .hero h1 { font-size: 44px; }
-  .hero-deco { display: none; }
+  .hero::before { background-image: linear-gradient(180deg, rgba(13,17,23,.88) 0%, rgba(13,17,23,.8) 100%), var(--pattern); }
+  .hero-bg { object-position: 60% center; }
   .hero-refs { margin-top: 52px; }
   .hero-refs .label { width: 100%; margin-bottom: 4px; }
   .stats { padding: 40px 28px; gap: 34px 20px; }
@@ -622,26 +633,8 @@ h3 { font-family: var(--f-display); font-weight: 600; color: var(--nuit); line-h
 
 <!-- ===================== 2. HERO ===================== -->
 <section class="hero" id="top" aria-labelledby="hero-title">
-  <!-- Constellation décorative -->
-  <svg class="hero-deco" viewBox="0 0 560 560" fill="none" aria-hidden="true">
-    <g stroke="#2E86AB" stroke-width="1">
-      <circle cx="280" cy="280" r="250" stroke-opacity=".08"/>
-      <circle cx="280" cy="280" r="180" stroke-opacity=".1" stroke-dasharray="2 6"/>
-      <circle cx="280" cy="280" r="110" stroke-opacity=".14"/>
-      <path d="M120 170 L280 280 L430 140 M280 280 L410 420 M280 280 L150 400 M120 170 L150 400 M430 140 L410 420 M280 100 L430 140 M280 100 L120 170 M280 280 L280 100" stroke-opacity=".22"/>
-    </g>
-    <g fill="#2E86AB">
-      <circle cx="280" cy="280" r="6"/>
-      <circle cx="280" cy="280" r="16" fill-opacity=".15"/>
-      <circle cx="120" cy="170" r="4" fill-opacity=".8"/>
-      <circle cx="430" cy="140" r="4" fill-opacity=".8"/>
-      <circle cx="410" cy="420" r="4" fill-opacity=".8"/>
-      <circle cx="150" cy="400" r="4" fill-opacity=".8"/>
-      <circle cx="280" cy="100" r="3" fill-opacity=".6"/>
-      <circle cx="530" cy="280" r="2.5" fill-opacity=".5"/>
-      <circle cx="30" cy="280" r="2.5" fill-opacity=".5"/>
-    </g>
-  </svg>
+  <!-- Photo : Unsplash (licence Unsplash, usage commercial libre) — unsplash.com/photos/U4k1cYl1kU8 -->
+  <img class="hero-bg" src="images/hero-ocean.jpg" alt="" width="2000" height="1500" fetchpriority="high" decoding="async">
 
   <div class="container">
     <div class="hero-content">
