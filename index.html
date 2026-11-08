@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dielfenn Conseil — Vous avez l'idée. Nous avons les outils.</title>
+<meta name="description" content="Dielfenn Conseil accompagne les porteurs de projets innovants (deeptech, healthtech, biotech) et les dirigeants de TPE/PME avant, pendant et après l'incubation. Bretagne, Pays de la Loire, Normandie, Île-de-France, Aquitaine.">
+<meta name="theme-color" content="#0D1117">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap');
+
+:root {
+  --nuit:    #0D1117;
+  --ocean:   #0A3D62;
+  --vague:   #1A6E9B;
+  --ecume:   #E8F4FD;
+  --sel:     #F7FAFB;
+  --ardoise: #4A5568;
+
+  --accent: #2E86AB;
+  /* Variante assombrie de l'accent : utilisée pour le texte sur fond clair
+     et les fonds de boutons à texte blanc (contraste AA ≥ 4.5:1) */
+  --accent-strong: #22739A;
+  --accent-hover: #1B6488;
+
+  --nav-h: 68px;
+  --maxw: 1100px;
+  --gutter: 32px;
+
+  --f-display: 'Syne', 'Helvetica Neue', Arial, sans-serif;
+  --f-body: 'DM Sans', 'Helvetica Neue', Arial, sans-serif;
+
+  --pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg stroke='%232E86AB' stroke-opacity='0.06' stroke-width='0.75'%3E%3Cline x1='0' y1='0' x2='40' y2='40'/%3E%3Cline x1='80' y1='0' x2='40' y2='40'/%3E%3Cline x1='0' y1='80' x2='40' y2='40'/%3E%3Cline x1='80' y1='80' x2='40' y2='40'/%3E%3C/g%3E%3Cg fill='%232E86AB' fill-opacity='0.35'%3E%3Ccircle cx='0' cy='0' r='1'/%3E%3Ccircle cx='80' cy='0' r='1'/%3E%3Ccircle cx='0' cy='80' r='1'/%3E%3Ccircle cx='80' cy='80' r='1'/%3E%3Ccircle cx='40' cy='40' r='1'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-padding-top: var(--nav-h); -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: var(--f-body);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--ardoise);
+  background: var(--sel);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+body.menu-open { overflow: hidden; }
+/* backdrop-filter crée un containing block pour les enfants fixed : on le coupe quand le menu plein écran est ouvert */
+body.menu-open .nav { -webkit-backdrop-filter: none; backdrop-filter: none; }
+
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+button, input, select, textarea { font: inherit; color: inherit; }
+svg { display: block; }
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.skip-link {
+  position: absolute; left: 16px; top: -60px; z-index: 200;
+  background: var(--accent-strong); color: #fff; padding: 10px 16px; border-radius: 3px;
+  transition: top .2s;
+}
+.skip-link:focus { top: 12px; }
+
+.container { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); }
+
+section { position: relative; padding: 112px 0; }
+
+.dark { background-color: var(--nuit); background-image: var(--pattern); background-size: 80px 80px; color: rgba(255,255,255,.72); }
+
+/* ---------- Typographie commune ---------- */
+.eyebrow {
+  display: inline-block;
+  font-family: var(--f-body); font-weight: 500; font-size: 11px;
+  letter-spacing: .35em; text-transform: uppercase;
+  color: var(--accent-strong);
+  margin-bottom: 20px;
+}
+.dark .eyebrow { color: var(--accent); }
+
+h2 {
+  font-family: var(--f-display); font-weight: 700;
+  font-size: clamp(28px, 3.6vw, 42px); line-height: 1.15; letter-spacing: -.01em;
+  color: var(--nuit);
+}
+.dark h2 { color: #fff; }
+h3 { font-family: var(--f-display); font-weight: 600; color: var(--nuit); line-height: 1.25; }
+
+.section-head { margin-bottom: 64px; }
+.section-head.center { text-align: center; }
+.section-head.center h2 { max-width: 720px; margin: 0 auto; }
+.section-head p.lead { margin-top: 18px; max-width: 620px; font-weight: 300; font-size: 17px; }
+.section-head.center p.lead { margin-left: auto; margin-right: auto; }
+
+/* ---------- Boutons ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  font-family: var(--f-body); font-weight: 500; font-size: 15px; letter-spacing: .01em;
+  padding: 15px 32px; border-radius: 3px; border: 1px solid transparent;
+  cursor: pointer; transition: background-color .25s, border-color .25s, color .25s, transform .25s;
+  white-space: nowrap;
+}
+.btn-primary { background: var(--accent-strong); color: #fff; }
+.btn-primary:hover { background: var(--accent-hover); }
+.btn-primary .arrow { transition: transform .25s; }
+.btn-primary:hover .arrow { transform: translateX(4px); }
+.btn-ghost { border-color: rgba(255,255,255,.25); color: #fff; background: transparent; }
+.btn-ghost:hover { border-color: rgba(255,255,255,.6); background: rgba(255,255,255,.04); }
+
+/* =========================================================
+   1. NAVIGATION
+   ========================================================= */
+.nav {
+  position: fixed; inset: 0 0 auto 0; height: var(--nav-h); z-index: 100;
+  background: transparent;
+  transition: background-color .35s, backdrop-filter .35s, box-shadow .35s;
+}
+.nav.scrolled {
+  background: rgba(13,17,23,.96);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  box-shadow: 0 1px 0 rgba(255,255,255,.05);
+}
+.nav .container { height: 100%; display: flex; align-items: center; justify-content: space-between; }
+
+.logo { display: inline-flex; flex-direction: column; line-height: 1; position: relative; z-index: 120; }
+.logo-word { font-family: var(--f-display); font-weight: 800; font-size: 21px; letter-spacing: .08em; color: #fff; }
+.logo-sub { font-family: var(--f-body); font-weight: 300; font-size: 10px; text-transform: uppercase; letter-spacing: .32em; color: var(--accent); margin-top: 5px; }
+
+.nav-links { display: flex; align-items: center; gap: 36px; }
+.nav-links a.link {
+  font-size: 14px; font-weight: 400; color: rgba(255,255,255,.65);
+  position: relative; padding: 6px 0; transition: color .25s;
+}
+.nav-links a.link::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px;
+  background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform .3s;
+}
+.nav-links a.link:hover, .nav-links a.link.active { color: #fff; }
+.nav-links a.link.active::after { transform: scaleX(1); }
+.nav-links .btn { padding: 10px 20px; font-size: 14px; }
+
+.burger {
+  display: none; position: relative; z-index: 120;
+  width: 44px; height: 44px; background: none; border: 0; cursor: pointer;
+  margin-right: -10px;
+}
+.burger span {
+  position: absolute; left: 11px; width: 22px; height: 2px; background: #fff; border-radius: 1px;
+  transition: transform .3s, opacity .2s, top .3s;
+}
+.burger span:nth-child(1) { top: 15px; }
+.burger span:nth-child(2) { top: 21px; }
+.burger span:nth-child(3) { top: 27px; }
+.burger[aria-expanded="true"] span:nth-child(1) { top: 21px; transform: rotate(45deg); }
+.burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.burger[aria-expanded="true"] span:nth-child(3) { top: 21px; transform: rotate(-45deg); }
+
+/* =========================================================
+   2. HERO
+   ========================================================= */
+.hero {
+  min-height: 100vh; min-height: 100svh;
+  display: flex; align-items: center;
+  padding: calc(var(--nav-h) + 48px) 0 56px;
+  background-color: var(--nuit);
+  background-image:
+    radial-gradient(ellipse 60% 50% at 70% 50%, rgba(10,61,98,.5), transparent),
+    var(--pattern);
+  background-size: 100% 100%, 80px 80px;
+  overflow: hidden;
+}
+.hero::after { /* Fondu bas pour ancrer les pills */
+  content: ""; position: absolute; inset: auto 0 0 0; height: 160px;
+  background: linear-gradient(to bottom, transparent, rgba(13,17,23,.6)); pointer-events: none;
+}
+.hero-deco {
+  position: absolute; right: -60px; top: 50%; transform: translateY(-50%);
+  width: min(560px, 52vw); opacity: .9; pointer-events: none;
+}
+.hero .container { position: relative; z-index: 2; display: flex; flex-direction: column; min-height: calc(100vh - var(--nav-h) - 104px); justify-content: center; }
+.hero-content { max-width: 760px; }
+.hero h1 {
+  font-family: var(--f-display); font-weight: 800;
+  font-size: clamp(44px, 6.5vw, 76px); line-height: 1.04; letter-spacing: -.02em;
+  color: #fff;
+}
+.hero h1 .l2 { display: block; color: var(--accent); }
+.hero .baseline {
+  font-family: var(--f-display); font-weight: 400;
+  font-size: clamp(18px, 2.5vw, 24px); color: rgba(255,255,255,.55);
+  margin-top: 28px;
+}
+.hero .desc {
+  font-weight: 300; font-size: 16px; line-height: 1.75; color: rgba(255,255,255,.65);
+  max-width: 560px; margin-top: 18px;
+}
+.hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 40px; }
+
+.hero-refs { margin-top: 72px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 10px; }
+.hero-refs .label {
+  font-size: 11px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase;
+  color: rgba(255,255,255,.55); margin-right: 10px;
+}
+.pill {
+  font-size: 13px; font-weight: 400; color: rgba(255,255,255,.75);
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08);
+  padding: 7px 16px; border-radius: 100px;
+  -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+}
+
+.scroll-cue {
+  position: absolute; left: 50%; bottom: 22px; z-index: 2; transform: translateX(-50%);
+  width: 1px; height: 44px; background: linear-gradient(to bottom, rgba(46,134,171,0), rgba(46,134,171,.8));
+  overflow: hidden;
+}
+.scroll-cue::after {
+  content: ""; position: absolute; left: 0; top: -44px; width: 1px; height: 44px; background: #fff;
+  animation: cue 2.4s cubic-bezier(.6,0,.3,1) infinite;
+}
+@keyframes cue { to { top: 44px; } }
+
+/* =========================================================
+   3. APPROCHE
+   ========================================================= */
+.approche { background: var(--sel); }
+.approche-grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: 80px; align-items: center; }
+.approche h2 { max-width: 640px; }
+.approche .intro { margin-top: 22px; font-weight: 300; font-size: 17px; max-width: 560px; }
+.points { margin-top: 40px; display: grid; gap: 22px; }
+.points li { display: grid; grid-template-columns: 28px 1fr; gap: 14px; align-items: start; font-size: 16px; color: var(--ardoise); }
+.points .dot {
+  width: 28px; height: 28px; border-radius: 50%; background: var(--accent);
+  display: grid; place-items: center;
+  font-family: var(--f-display); font-weight: 700; font-size: 12px; color: var(--nuit);
+}
+.points li p { padding-top: 2px; }
+
+.stats {
+  background-color: var(--ocean);
+  background-image: var(--pattern); background-size: 80px 80px;
+  padding: 52px 48px; border-radius: 4px; position: relative; overflow: hidden;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 44px 32px;
+  box-shadow: 0 30px 60px -30px rgba(10,61,98,.55);
+}
+.stats::before {
+  content: ""; position: absolute; left: 0; top: 0; width: 56px; height: 3px; background: var(--accent);
+}
+.stat-num {
+  font-family: var(--f-display); font-weight: 800; font-size: clamp(40px, 4.4vw, 54px);
+  line-height: 1; color: #fff; letter-spacing: -.02em;
+}
+.stat-num sup { font-size: .5em; vertical-align: top; position: relative; top: .15em; color: #8CC6E0; margin-left: 2px; }
+.stat-label { margin-top: 10px; font-size: 14px; font-weight: 300; line-height: 1.5; color: rgba(255,255,255,.78); }
+
+/* =========================================================
+   4. POUR QUI
+   ========================================================= */
+.pourqui { background: var(--ecume); }
+.cards-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.card {
+  background: #fff; padding: 40px 34px 36px; border-radius: 3px;
+  border-top: 3px solid transparent;
+  box-shadow: 0 1px 0 rgba(10,61,98,.06), 0 18px 40px -28px rgba(10,61,98,.35);
+  display: flex; flex-direction: column;
+  transition: border-color .3s, transform .3s, box-shadow .3s;
+}
+.card:hover { border-top-color: var(--accent); transform: translateY(-4px); box-shadow: 0 1px 0 rgba(10,61,98,.06), 0 28px 50px -28px rgba(10,61,98,.45); }
+.card.featured { border-top-color: var(--accent); }
+.card-icon {
+  width: 52px; height: 52px; border-radius: 3px; background: var(--ecume); color: var(--vague);
+  display: grid; place-items: center; margin-bottom: 26px;
+}
+.card-icon svg { width: 28px; height: 28px; }
+.card .kicker { font-size: 11px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--accent-strong); margin-bottom: 8px; }
+.card h3 { font-size: 22px; margin-bottom: 14px; }
+.card p { font-size: 15px; font-weight: 400; line-height: 1.7; flex: 1; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; }
+.tag {
+  font-size: 12px; font-weight: 500; color: var(--ocean);
+  background: var(--sel); border: 1px solid rgba(10,61,98,.1);
+  padding: 4px 11px; border-radius: 2px;
+}
+
+/* =========================================================
+   5. THÈMES
+   ========================================================= */
+.themes-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid rgba(255,255,255,.05); border-left: 1px solid rgba(255,255,255,.05);
+}
+.theme {
+  position: relative; padding: 38px 30px 40px;
+  border-right: 1px solid rgba(255,255,255,.05); border-bottom: 1px solid rgba(255,255,255,.05);
+  transition: background-color .3s;
+}
+.theme:hover { background-color: rgba(46,134,171,.08); }
+.theme::before {
+  content: ""; position: absolute; left: -1px; top: -1px; width: 0; height: 2px; background: var(--accent);
+  transition: width .4s;
+}
+.theme:hover::before { width: calc(100% + 2px); }
+.theme.wide { grid-column: span 2; }
+.theme-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; }
+.theme-icon { width: 28px; height: 28px; color: var(--accent); }
+.theme-num { font-family: var(--f-display); font-weight: 600; font-size: 13px; color: rgba(255,255,255,.55); letter-spacing: .1em; }
+.theme h3 { color: #fff; font-size: 19px; margin-bottom: 10px; }
+.theme p { font-weight: 300; font-size: 14.5px; line-height: 1.65; color: rgba(255,255,255,.68); }
+.theme.wide p { max-width: 420px; }
+
+/* =========================================================
+   6. OFFRES
+   ========================================================= */
+.offres { background: var(--sel); }
+.offres-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.offre {
+  background: #fff; padding: 40px 40px 36px; border-radius: 3px;
+  border-left: 3px solid rgba(46,134,171,.18);
+  box-shadow: 0 1px 0 rgba(10,61,98,.05), 0 18px 40px -30px rgba(10,61,98,.3);
+  display: flex; flex-direction: column;
+  transition: border-color .3s, box-shadow .3s;
+}
+.offre:hover { border-left-color: var(--accent); box-shadow: 0 1px 0 rgba(10,61,98,.05), 0 26px 50px -30px rgba(10,61,98,.42); }
+.offre.featured { border-left-color: var(--accent); }
+.offre-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 22px; }
+.offre-num { font-family: var(--f-display); font-weight: 800; font-size: 15px; color: var(--accent-strong); letter-spacing: .05em; }
+.offre h3 { font-size: 22px; }
+.checklist { display: grid; gap: 12px; flex: 1; }
+.checklist li { display: grid; grid-template-columns: 18px 1fr; gap: 12px; font-size: 15px; line-height: 1.55; }
+.checklist svg { width: 18px; height: 18px; margin-top: 3px; color: var(--accent); }
+.offre-meta {
+  margin-top: 28px; padding-top: 18px; border-top: 1px solid rgba(10,61,98,.08);
+  display: flex; align-items: center; gap: 10px;
+  font-size: 13px; font-weight: 500; color: var(--ocean);
+}
+.offre-meta svg { width: 16px; height: 16px; color: var(--accent); flex-shrink: 0; }
+
+.offre.full {
+  grid-column: 1 / -1;
+  background-color: var(--ocean); background-image: var(--pattern); background-size: 80px 80px;
+  border-left-color: var(--accent);
+  display: grid; grid-template-columns: 1fr 1fr; gap: 56px; padding: 52px 48px;
+  color: rgba(255,255,255,.78);
+}
+.offre.full h3 { color: #fff; font-size: 26px; }
+.offre.full .offre-num { color: #8CC6E0; }
+.offre.full .offre-desc { font-weight: 300; font-size: 16.5px; line-height: 1.75; }
+.offre.full .checklist li { color: rgba(255,255,255,.88); }
+.offre.full .checklist svg { color: #8CC6E0; }
+.offre.full .btn { margin-top: 30px; align-self: flex-start; }
+.offre.full .col-l { display: flex; flex-direction: column; }
+.offre.full .col-r { display: flex; flex-direction: column; justify-content: center; padding-left: 40px; border-left: 1px solid rgba(255,255,255,.1); }
+.offre.full .col-r .sub { font-size: 11px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: #8CC6E0; margin-bottom: 18px; }
+
+/* =========================================================
+   7. GUY MORDRET
+   ========================================================= */
+.profil { background: var(--ecume); }
+.profil-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 64px; align-items: start; }
+.portrait {
+  position: sticky; top: calc(var(--nav-h) + 32px);
+  background-color: var(--ocean); background-image: var(--pattern); background-size: 80px 80px;
+  border-radius: 4px; overflow: hidden; aspect-ratio: 4 / 5;
+  display: flex; flex-direction: column; justify-content: flex-end; padding: 36px;
+  box-shadow: 0 30px 60px -30px rgba(10,61,98,.55);
+}
+.portrait::before {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 30% 20%, rgba(46,134,171,.35), transparent 70%);
+}
+.portrait .initials {
+  position: absolute; top: 12px; left: 22px;
+  font-family: var(--f-display); font-weight: 800; font-size: clamp(140px, 16vw, 200px); line-height: 1;
+  color: #fff; opacity: .15; letter-spacing: -.04em; user-select: none;
+}
+.portrait .accent-line { position: relative; width: 40px; height: 3px; background: var(--accent); margin-bottom: 20px; }
+.portrait .name { position: relative; font-family: var(--f-display); font-weight: 700; font-size: 28px; color: #fff; line-height: 1.1; }
+.portrait .title { position: relative; font-weight: 300; font-size: 15px; color: #8CC6E0; margin-top: 6px; letter-spacing: .08em; }
+.portrait .role { position: relative; font-size: 13px; font-weight: 300; color: rgba(255,255,255,.72); margin-top: 18px; line-height: 1.55; }
+
+.profil h2 { max-width: 640px; }
+.profil .intro { margin-top: 22px; font-weight: 300; font-size: 17px; line-height: 1.75; max-width: 640px; }
+.timeline { margin-top: 44px; display: grid; gap: 12px; position: relative; }
+.tl-item {
+  background: #fff; padding: 16px 20px; border-radius: 3px;
+  display: grid; grid-template-columns: 128px 1fr; gap: 20px; align-items: baseline;
+  border-left: 3px solid transparent; transition: border-color .3s, transform .3s;
+}
+.tl-item:hover { border-left-color: var(--accent); transform: translateX(4px); }
+.tl-date { font-family: var(--f-display); font-weight: 700; font-size: 14px; color: var(--accent-strong); letter-spacing: .02em; }
+.tl-text { font-size: 15px; line-height: 1.6; color: var(--ardoise); }
+.tl-text strong { color: var(--nuit); font-weight: 500; }
+
+/* =========================================================
+   8. RÉFÉRENCES
+   ========================================================= */
+.refs { text-align: center; }
+.refs-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid rgba(255,255,255,.06); border-left: 1px solid rgba(255,255,255,.06);
+  max-width: 960px; margin: 0 auto;
+}
+.ref {
+  display: grid; place-items: center; min-height: 140px; padding: 24px;
+  border-right: 1px solid rgba(255,255,255,.06); border-bottom: 1px solid rgba(255,255,255,.06);
+  font-family: var(--f-display); font-weight: 700; font-size: clamp(19px, 2vw, 22px); letter-spacing: .12em;
+  color: rgba(255,255,255,.4);
+  transition: background-color .3s, color .3s;
+}
+.ref:hover { background-color: rgba(46,134,171,.1); color: rgba(255,255,255,.75); }
+
+/* =========================================================
+   9. CONTACT
+   ========================================================= */
+.contact { background: var(--sel); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
+.contact .intro { margin-top: 22px; font-weight: 300; font-size: 17px; line-height: 1.75; max-width: 460px; }
+.coords { margin-top: 44px; display: grid; gap: 26px; }
+.coord { display: grid; grid-template-columns: 44px 1fr; gap: 16px; align-items: start; }
+.coord-icon { width: 44px; height: 44px; border-radius: 3px; background: var(--ecume); color: var(--vague); display: grid; place-items: center; }
+.coord-icon svg { width: 20px; height: 20px; }
+.coord-label { font-size: 11px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--accent-strong); margin-bottom: 4px; }
+.coord-value { font-size: 15.5px; color: var(--nuit); line-height: 1.55; }
+.coord-value a { border-bottom: 1px solid rgba(46,134,171,.35); transition: border-color .25s, color .25s; }
+.coord-value a:hover { color: var(--accent-strong); border-color: var(--accent-strong); }
+.brand-note { margin-top: 36px; font-size: 13px; color: var(--ardoise); }
+.brand-note strong { font-family: var(--f-display); font-weight: 700; color: var(--nuit); letter-spacing: .04em; }
+
+.form {
+  background: #fff; border-top: 3px solid var(--accent); border-radius: 3px;
+  padding: 44px 40px 40px;
+  box-shadow: 0 1px 0 rgba(10,61,98,.05), 0 30px 60px -36px rgba(10,61,98,.4);
+}
+.form h3 { font-size: 20px; margin-bottom: 6px; }
+.form .form-sub { font-size: 14px; margin-bottom: 30px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.field { display: flex; flex-direction: column; margin-bottom: 20px; }
+.field label { font-size: 13px; font-weight: 500; color: var(--nuit); margin-bottom: 8px; }
+.field label .req { color: var(--accent-strong); }
+.field input, .field select, .field textarea {
+  width: 100%; padding: 13px 14px; font-size: 15px; color: var(--nuit);
+  background: var(--sel); border: 1px solid #CBD5E0; border-radius: 3px;
+  transition: border-color .2s, background-color .2s, box-shadow .2s;
+  -webkit-appearance: none; appearance: none;
+}
+.field input::placeholder, .field textarea::placeholder { color: #6B7787; }
+.field textarea { min-height: 130px; resize: vertical; line-height: 1.55; }
+.field select {
+  cursor: pointer; padding-right: 40px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%234A5568' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 16px center;
+}
+.field input:focus, .field select:focus, .field textarea:focus {
+  outline: none; border-color: var(--accent); background-color: #fff; box-shadow: 0 0 0 3px rgba(46,134,171,.15);
+}
+.field.invalid input, .field.invalid select, .field.invalid textarea { border-color: #B42318; }
+.field .err { font-size: 12.5px; color: #B42318; margin-top: 6px; display: none; }
+.field.invalid .err { display: block; }
+.form .btn { width: 100%; margin-top: 6px; padding: 16px 32px; }
+.form-legal { font-size: 12.5px; line-height: 1.55; margin-top: 16px; color: var(--ardoise); }
+.form-success {
+  display: none; margin-top: 18px; padding: 14px 16px; border-radius: 3px;
+  background: var(--ecume); border-left: 3px solid var(--accent); color: var(--ocean); font-size: 14px;
+}
+.form-success.show { display: block; }
+
+/* =========================================================
+   10. FOOTER
+   ========================================================= */
+.footer { padding: 80px 0 32px; }
+.footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 48px; padding-bottom: 56px; border-bottom: 1px solid rgba(255,255,255,.08); }
+.footer .logo { margin-bottom: 20px; }
+.footer .brand-txt { font-size: 14px; font-weight: 300; color: rgba(255,255,255,.65); max-width: 300px; line-height: 1.7; }
+.footer .brand-txt + .brand-txt { margin-top: 14px; }
+.footer h4 {
+  font-family: var(--f-body); font-size: 11px; font-weight: 500; letter-spacing: .3em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 22px;
+}
+.footer ul { display: grid; gap: 11px; }
+.footer ul a, .footer ul li { font-size: 14px; color: rgba(255,255,255,.65); transition: color .25s; }
+.footer ul a:hover { color: #fff; }
+.footer-bottom {
+  padding-top: 28px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px;
+  font-size: 13px; color: rgba(255,255,255,.6);
+}
+.footer-bottom nav { display: flex; flex-wrap: wrap; gap: 8px 22px; align-items: center; }
+.footer-bottom a:hover { color: #fff; }
+/* Opacité 0.5 au lieu de 0.3 demandé : 0.3 donnerait un contraste ≈2.6:1 (non conforme AA) */
+.credit { font-weight: 300; font-size: 11px; color: #fff; opacity: .5; letter-spacing: .02em; }
+
+/* =========================================================
+   SCROLL REVEAL
+   ========================================================= */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity .8s cubic-bezier(.2,.65,.3,1), transform .8s cubic-bezier(.2,.65,.3,1); }
+.reveal.in { opacity: 1; transform: none; }
+.reveal-d1 { transition-delay: .08s; }
+.reveal-d2 { transition-delay: .16s; }
+.reveal-d3 { transition-delay: .24s; }
+.reveal-d4 { transition-delay: .32s; }
+.no-js .reveal { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .reveal { opacity: 1; transform: none; }
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 1024px) {
+  :root { --gutter: 28px; }
+  section { padding: 96px 0; }
+  .nav-links { gap: 26px; }
+  .approche-grid { gap: 56px; }
+  .themes-grid { grid-template-columns: repeat(2, 1fr); }
+  .theme.wide { grid-column: span 2; }
+  .profil-grid { grid-template-columns: 1fr; gap: 48px; }
+  .portrait { position: relative; top: 0; aspect-ratio: auto; min-height: 280px; max-width: 520px; }
+  .portrait .initials { font-size: 160px; }
+  .cards-3 { gap: 18px; }
+  .card { padding: 34px 26px 30px; }
+  .contact-grid { gap: 48px; }
+  .hero-deco { opacity: .5; }
+}
+
+@media (max-width: 900px) {
+  .approche-grid { grid-template-columns: 1fr; }
+  .cards-3 { grid-template-columns: 1fr; max-width: 560px; margin: 0 auto; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .offre.full { grid-template-columns: 1fr; gap: 32px; }
+  .offre.full .col-r { padding-left: 0; padding-top: 28px; border-left: 0; border-top: 1px solid rgba(255,255,255,.1); }
+}
+
+@media (max-width: 860px) {
+  .burger { display: block; }
+  .nav-links {
+    position: fixed; inset: 0; z-index: 110;
+    background-color: var(--nuit); background-image: var(--pattern); background-size: 80px 80px;
+    flex-direction: column; justify-content: center; align-items: flex-start; gap: 6px;
+    padding: calc(var(--nav-h) + 24px) 28px 40px;
+    opacity: 0; visibility: hidden; transition: opacity .35s, visibility .35s;
+  }
+  .nav-links.open { opacity: 1; visibility: visible; }
+  .nav-links a.link {
+    font-family: var(--f-display); font-weight: 700; font-size: 32px; color: rgba(255,255,255,.65);
+    padding: 10px 0;
+    transform: translateY(12px); opacity: 0; transition: transform .45s, opacity .45s, color .25s;
+  }
+  .nav-links a.link::after { display: none; }
+  .nav-links.open a.link { transform: none; opacity: 1; }
+  .nav-links.open li:nth-child(2) a { transition-delay: .05s; }
+  .nav-links.open li:nth-child(3) a { transition-delay: .1s; }
+  .nav-links.open li:nth-child(4) a { transition-delay: .15s; }
+  .nav-links li:last-child { margin-top: 28px; width: 100%; }
+  .nav-links .btn { width: 100%; padding: 16px 24px; font-size: 16px; }
+}
+
+@media (max-width: 768px) {
+  :root { --gutter: 20px; }
+  section { padding: 80px 0; }
+  .section-head { margin-bottom: 44px; }
+  .hero h1 { font-size: 44px; }
+  .hero-deco { display: none; }
+  .hero-refs { margin-top: 52px; }
+  .hero-refs .label { width: 100%; margin-bottom: 4px; }
+  .stats { padding: 40px 28px; gap: 34px 20px; }
+  .themes-grid { grid-template-columns: 1fr; }
+  .theme.wide { grid-column: auto; }
+  .offres-grid { grid-template-columns: 1fr; }
+  .offre { padding: 32px 26px 28px; }
+  .offre.full { padding: 36px 26px; }
+  .tl-item { grid-template-columns: 1fr; gap: 4px; }
+  .refs-grid { grid-template-columns: repeat(2, 1fr); }
+  .ref { min-height: 110px; letter-spacing: .08em; }
+  .form { padding: 34px 22px 28px; }
+  .form-row { grid-template-columns: 1fr; gap: 0; }
+  .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; }
+  .scroll-cue { display: none; }
+}
+
+@media (max-width: 480px) {
+  .hero-ctas { flex-direction: column; }
+  .hero-ctas .btn { width: 100%; }
+  .stats { grid-template-columns: 1fr 1fr; }
+  .refs-grid { grid-template-columns: 1fr; }
+  .card h3 { font-size: 20px; }
+}
+</style>
+</head>
+<body class="no-js">
+
+<a class="skip-link" href="#main">Aller au contenu</a>
+
+<!-- ===================== 1. NAVIGATION ===================== -->
+<header class="nav" id="nav">
+  <div class="container">
+    <a href="#top" class="logo" aria-label="Dielfenn Conseil — retour en haut de page">
+      <span class="logo-word">DIELFENN</span>
+      <span class="logo-sub">Conseil</span>
+    </a>
+    <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
+    <nav aria-label="Navigation principale">
+      <ul class="nav-links" id="nav-links">
+        <li><a class="link" href="#approche">Approche</a></li>
+        <li><a class="link" href="#pour-qui">Pour qui</a></li>
+        <li><a class="link" href="#offres">Offres</a></li>
+        <li><a class="link" href="#guy-mordret">Guy Mordret</a></li>
+        <li><a class="btn btn-primary" href="#contact">Prendre contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ===================== 2. HERO ===================== -->
+<section class="hero" id="top" aria-labelledby="hero-title">
+  <!-- Constellation décorative -->
+  <svg class="hero-deco" viewBox="0 0 560 560" fill="none" aria-hidden="true">
+    <g stroke="#2E86AB" stroke-width="1">
+      <circle cx="280" cy="280" r="250" stroke-opacity=".08"/>
+      <circle cx="280" cy="280" r="180" stroke-opacity=".1" stroke-dasharray="2 6"/>
+      <circle cx="280" cy="280" r="110" stroke-opacity=".14"/>
+      <path d="M120 170 L280 280 L430 140 M280 280 L410 420 M280 280 L150 400 M120 170 L150 400 M430 140 L410 420 M280 100 L430 140 M280 100 L120 170 M280 280 L280 100" stroke-opacity=".22"/>
+    </g>
+    <g fill="#2E86AB">
+      <circle cx="280" cy="280" r="6"/>
+      <circle cx="280" cy="280" r="16" fill-opacity=".15"/>
+      <circle cx="120" cy="170" r="4" fill-opacity=".8"/>
+      <circle cx="430" cy="140" r="4" fill-opacity=".8"/>
+      <circle cx="410" cy="420" r="4" fill-opacity=".8"/>
+      <circle cx="150" cy="400" r="4" fill-opacity=".8"/>
+      <circle cx="280" cy="100" r="3" fill-opacity=".6"/>
+      <circle cx="530" cy="280" r="2.5" fill-opacity=".5"/>
+      <circle cx="30" cy="280" r="2.5" fill-opacity=".5"/>
+    </g>
+  </svg>
+
+  <div class="container">
+    <div class="hero-content">
+      <span class="eyebrow reveal">Conseil · Accompagnement · Stratégie</span>
+      <h1 id="hero-title" class="reveal reveal-d1">Vous avez l'idée.<span class="l2">Nous avons les outils.</span></h1>
+      <p class="baseline reveal reveal-d2">De la vision à la mise en marché.</p>
+      <p class="desc reveal reveal-d2">Dielfenn Conseil accompagne les porteurs de projets innovants et les dirigeants de TPE/PME avant, pendant et après leur prise en charge par les incubateurs.</p>
+      <div class="hero-ctas reveal reveal-d3">
+        <a href="#contact" class="btn btn-primary">Prendre contact <span class="arrow" aria-hidden="true">→</span></a>
+        <a href="#offres" class="btn btn-ghost">Découvrir les offres</a>
+      </div>
+    </div>
+    <div class="hero-refs reveal reveal-d4" aria-label="Projets accompagnés">
+      <span class="label">Ils nous font confiance</span>
+      <span class="pill">Levabag</span>
+      <span class="pill">Mitologics</span>
+      <span class="pill">Inexell</span>
+      <span class="pill">Deep Physio</span>
+      <span class="pill">Medecom</span>
+    </div>
+  </div>
+  <span class="scroll-cue" aria-hidden="true"></span>
+</section>
+
+<!-- ===================== 3. APPROCHE ===================== -->
+<section class="approche" id="approche" aria-labelledby="approche-title">
+  <div class="container approche-grid">
+    <div>
+      <span class="eyebrow reveal">Notre approche</span>
+      <h2 id="approche-title" class="reveal reveal-d1">La gestion d'entreprise s'apprend. Autant ne pas le faire seul.</h2>
+      <p class="intro reveal reveal-d2">Un regard scientifique sur vos enjeux business : méthode, rigueur et pragmatisme pour transformer une idée en entreprise viable.</p>
+      <ol class="points">
+        <li class="reveal reveal-d1"><span class="dot" aria-hidden="true">1</span><p>Clarifier le modèle économique et le positionnement marché dès le départ</p></li>
+        <li class="reveal reveal-d2"><span class="dot" aria-hidden="true">2</span><p>Accélérer l'accès aux financements, incubateurs et partenaires stratégiques</p></li>
+        <li class="reveal reveal-d3"><span class="dot" aria-hidden="true">3</span><p>Développer les compétences de dirigeant à chaque étape de croissance</p></li>
+        <li class="reveal reveal-d4"><span class="dot" aria-hidden="true">4</span><p>Prendre les bonnes décisions avec un regard extérieur expert et bienveillant</p></li>
+      </ol>
+    </div>
+    <div class="stats reveal reveal-d2" role="list" aria-label="Dielfenn en chiffres">
+      <div role="listitem">
+        <div class="stat-num">25<sup>+</sup></div>
+        <div class="stat-label">années d'expérience terrain</div>
+      </div>
+      <div role="listitem">
+        <div class="stat-num">5</div>
+        <div class="stat-label">régions couvertes en France</div>
+      </div>
+      <div role="listitem">
+        <div class="stat-num">7</div>
+        <div class="stat-label">domaines d'intervention</div>
+      </div>
+      <div role="listitem">
+        <div class="stat-num">100<sup>%</sup></div>
+        <div class="stat-label">finançable par la formation continue</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 4. POUR QUI ===================== -->
+<section class="pourqui" id="pour-qui" aria-labelledby="pourqui-title">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow reveal">Pour qui</span>
+      <h2 id="pourqui-title" class="reveal reveal-d1">Un accompagnement adapté à votre profil.</h2>
+    </div>
+    <div class="cards-3">
+      <article class="card featured reveal reveal-d1">
+        <div class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3.5" y="4.5" width="21" height="19" rx="1.5"/>
+            <path d="M3.5 10h21M10 10v13.5M14 14.5h7M14 18.5h5"/>
+          </svg>
+        </div>
+        <span class="kicker">Créateurs &amp; dirigeants</span>
+        <h3>Entreprises classiques</h3>
+        <p>Créateurs et dirigeants de TPE/PME dans les services, le commerce, l'artisanat, l'industrie et les professions libérales.</p>
+        <div class="tags"><span class="tag">Commerce</span><span class="tag">Artisanat</span><span class="tag">Services</span><span class="tag">Libéral</span></div>
+      </article>
+      <article class="card reveal reveal-d2">
+        <div class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="14" cy="14" r="3"/><circle cx="5" cy="6" r="2"/><circle cx="23" cy="6" r="2"/><circle cx="5" cy="22" r="2"/><circle cx="23" cy="22" r="2"/>
+            <path d="M6.6 7.4l5.2 4.4M21.4 7.4l-5.2 4.4M6.6 20.6l5.2-4.4M21.4 20.6l-5.2-4.4"/>
+          </svg>
+        </div>
+        <span class="kicker">Innovation</span>
+        <h3>Projets innovants</h3>
+        <p>Porteurs de projets deeptech, healthtech, greentech, fintech et legaltech — avant, pendant et après l'incubation.</p>
+        <div class="tags"><span class="tag">Biotech</span><span class="tag">Healthtech</span><span class="tag">Deeptech</span><span class="tag">Greentech</span></div>
+      </article>
+      <article class="card reveal reveal-d3">
+        <div class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="14" cy="14" r="10" stroke-dasharray="2.5 3"/>
+            <circle cx="14" cy="4" r="2.2"/><circle cx="23.5" cy="17" r="2.2"/><circle cx="4.5" cy="17" r="2.2"/><circle cx="14" cy="14" r="2.6"/>
+            <path d="M14 6.2v5.2M21.4 16.2l-5 -1.4M6.6 16.2l5-1.4"/>
+          </svg>
+        </div>
+        <span class="kicker">Cercle Vertueux</span>
+        <h3>Mastermind</h3>
+        <p>Dirigeants de TPE et PME/PMI souhaitant progresser en groupe au sein du Cercle Vertueux — partage d'expériences et co-développement.</p>
+        <div class="tags"><span class="tag">TPE/PME</span><span class="tag">Groupe</span><span class="tag">Réseau</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 5. THÈMES ===================== -->
+<section class="dark themes" id="themes" aria-labelledby="themes-title">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow reveal">Domaines d'intervention</span>
+      <h2 id="themes-title" class="reveal reveal-d1">7 domaines. Une expertise transversale.</h2>
+    </div>
+    <div class="themes-grid">
+      <article class="theme reveal reveal-d1">
+        <div class="theme-top">
+          <svg class="theme-icon" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="9" height="9" rx="1"/><rect x="16" y="3" width="9" height="9" rx="1"/><rect x="3" y="16" width="9" height="9" rx="1"/><rect x="16" y="16" width="9" height="9" rx="1"/><path d="M12 7.5h4M7.5 12v4"/></svg>
+          <span class="theme-num">01</span>
+        </div>
+        <h3>Modèle économique</h3>
+        <p>Structuration du business model, analyse de viabilité</p>
+      </article>
+      <article class="theme reveal reveal-d2">
+        <div class="theme-top">
+          <svg class="theme-icon" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="14" cy="14" r="10.5"/><circle cx="14" cy="14" r="6"/><circle cx="14" cy="14" r="1.6" fill="currentColor"/><path d="M14 1.5v4M26.5 14h-4"/></svg>
+          <span class="theme-num">02</span>
+        </div>
+        <h3>Stratégie marketing</h3>
+        <p>Positionnement, segmentation, go-to-market</p>
+      </article>
+      <article class="theme reveal reveal-d3">
+        <div class="theme-top">
+          <svg class="theme-icon" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6.5h20v12H13l-5.5 4.5v-4.5H4z"/><path d="M9 11h10M9 14.5h6"/></svg>
+          <span class="theme-num">03</span>
+        </div>
+        <h3>Communication</h3>
+        <p>Stratégie éditoriale, pitch investisseurs</p>
+      </article>
+      <article class="theme reveal reveal-d4">
+        <div class="theme-top">
+          <svg class="theme-icon" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3.5" width="22" height="6.5" rx="1"/><rect x="3" y="18" width="22" height="6.5" rx="1"/><path d="M14 10v8M7 6.75h.01M7 21.25h.01M11 6.75h6M11 21.25h6"/></svg>
+          <span class="theme-num">04</span>
+        </div>
+        <h3>Système d'information</h3>
+        <p>Architecture SI, digitalisation des processus</p>
+      </article>
+      <article class="theme reveal reveal-d1">
+        <div class="theme-top">
+          <svg class="theme-icon" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 24h20"/><path d="M7 24V16M12 24V11M17 24V14M22 24V6"/><path d="M5 12l6-5 5 3 7-6"/></svg>
+          <span class="theme-num">05</span>
+        </div>
+        <h3>Pilotage</h3>
+        <p>Tableaux de bord, KPIs, management de la performance</p>
+      </article>
+      <article class="theme reveal reveal-d2">
+        <div class="theme-top">
+          <svg class="theme-icon" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="22" height="15" rx="1.5"/><path d="M10 24h8M14 19.5V24"/><path d="M8 15l4-4 3 3 5-5"/></svg>
+          <span class="theme-num">06</span>
+        </div>
+        <h3>Marketing digital</h3>
+        <p>SEO, acquisition, présence en ligne</p>
+      </article>
+      <article class="theme wide reveal reveal-d3">
+        <div class="theme-top">
+          <svg class="theme-icon" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="14" cy="14" r="11"/><path d="M3 14h22M14 3c3 3.2 4.5 6.9 4.5 11S17 21.8 14 25c-3-3.2-4.5-6.9-4.5-11S11 6.2 14 3z"/></svg>
+          <span class="theme-num">07</span>
+        </div>
+        <h3>International</h3>
+        <p>Export, partnerships européens, DG CONNECT</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 6. OFFRES ===================== -->
+<section class="offres" id="offres" aria-labelledby="offres-title">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow reveal">Nos offres</span>
+      <h2 id="offres-title" class="reveal reveal-d1">Cinq modalités d'accompagnement.</h2>
+      <p class="lead reveal reveal-d2">Du diagnostic ponctuel à la direction opérationnelle, chaque format s'ajuste à votre stade de maturité et à vos ressources.</p>
+    </div>
+
+    <!-- Symbole coche réutilisé -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+      <symbol id="check" viewBox="0 0 18 18"><circle cx="9" cy="9" r="8" fill="none" stroke="currentColor" stroke-width="1.3" opacity=".45"/><path d="M5.5 9.2l2.3 2.3 4.7-4.9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="clock" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 4.5V8l2.5 1.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></symbol>
+      <symbol id="flag" viewBox="0 0 16 16"><path d="M3 15V2M3 2.5h9l-2 3 2 3H3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    </svg>
+
+    <div class="offres-grid">
+      <article class="offre featured reveal reveal-d1">
+        <div class="offre-head"><span class="offre-num">01</span><h3>Diagnostic</h3></div>
+        <ul class="checklist">
+          <li><svg aria-hidden="true"><use href="#check"/></svg>Audit de l'idée et adéquation au marché</li>
+          <li><svg aria-hidden="true"><use href="#check"/></svg>Analyse du modèle économique</li>
+          <li><svg aria-hidden="true"><use href="#check"/></svg>Identification des risques et opportunités</li>
+          <li><svg aria-hidden="true"><use href="#check"/></svg>Évaluation des ressources disponibles</li>
+        </ul>
+      </article>
+
+      <article class="offre reveal reveal-d2">
+        <div class="offre-head"><span class="offre-num">02</span><h3>Coaching / Mentorat</h3></div>
+        <ul class="checklist">
+          <li><svg aria-hidden="true"><use href="#check"/></svg>Fixation d'objectifs et planification</li>
+          <li><svg aria-hidden="true"><use href="#check"/></svg>Développement des compétences clés</li>
+          <li><svg aria-hidden="true"><use href="#check"/></svg>Équilibre vie pro/vie personnelle</li>
+          <li><svg aria-hidden="true"><use href="#check"/></svg>Suivi régulier et ajustement du cap</li>
+        </ul>
+        <div class="offre-meta"><svg aria-hidden="true"><use href="#clock"/></svg>6 à 12 mois · Finançable formation continue</div>
+      </article>
+
+      <article class="offre reveal reveal-d1">
+        <div class="offre-head"><span class="offre-num">03</span><h3>Accompagnement start-up</h3></div>
+        <ul class="checklist">
+          <li><svg aria-hidden="true"><use href="#check"/></svg>Supports de présentation et pitch deck</li>
+          <li><svg aria-hidden="true"><use href="#check"/></svg>Entraînement aux pitchs</li>
+          <li><svg aria-hidden="true"><use href="#check"/></svg>Séquençage de la recherche de financement</li>
+          <li><svg aria-hidden="true"><use href="#check"/></svg>Tableaux de bord</li>
+        </ul>
+        <div class="offre-meta"><svg aria-hidden="true"><use href="#flag"/></svg>Programme Breizh Fab</div>
+      </article>
+
+      <article class="offre reveal reveal-d2">
+        <div class="offre-head"><span class="offre-num">04</span><h3>Stratégie marketing</h3></div>
+        <ul class="checklist">
+          <li><svg aria-hidden="true"><use href="#check"/></svg>Audit produit, marché et concurrence</li>
+          <li><svg aria-hidden="true"><use href="#check"/></svg>Positionnement et valeur perçue</li>
+          <li><svg aria-hidden="true"><use href="#check"/></svg>Plan de communication</li>
+          <li><svg aria-hidden="true"><use href="#check"/></svg>Stratégie d'acquisition clients</li>
+        </ul>
+      </article>
+
+      <article class="offre full reveal reveal-d1">
+        <div class="col-l">
+          <div class="offre-head"><span class="offre-num">05</span><h3>Management de transition</h3></div>
+          <p class="offre-desc">Pour les porteurs de projets issus de la recherche publique ou sans expérience entrepreneuriale, Dielfenn peut assurer la direction opérationnelle pendant la phase critique de démarrage.</p>
+          <a href="#contact" class="btn btn-primary">En discuter <span class="arrow" aria-hidden="true">→</span></a>
+        </div>
+        <div class="col-r">
+          <span class="sub">Ce que nous prenons en charge</span>
+          <ul class="checklist">
+            <li><svg aria-hidden="true"><use href="#check"/></svg>Prise en charge opérationnelle immédiate</li>
+            <li><svg aria-hidden="true"><use href="#check"/></svg>Structuration des équipes</li>
+            <li><svg aria-hidden="true"><use href="#check"/></svg>Profils issus de la recherche publique bienvenus</li>
+            <li><svg aria-hidden="true"><use href="#check"/></svg>Prise de participation éventuelle au capital</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 7. GUY MORDRET ===================== -->
+<section class="profil" id="guy-mordret" aria-labelledby="profil-title">
+  <div class="container profil-grid">
+    <aside class="portrait reveal" aria-label="Guy Mordret, PhD MBA">
+      <span class="initials" aria-hidden="true">GM</span>
+      <span class="accent-line" aria-hidden="true"></span>
+      <div class="name">Guy Mordret</div>
+      <div class="title">PhD · MBA</div>
+      <div class="role">Fondateur de Dielfenn Conseil · Président du Club Bretagne Biosciences</div>
+    </aside>
+    <div>
+      <span class="eyebrow reveal">Le consultant</span>
+      <h2 id="profil-title" class="reveal reveal-d1">Un parcours entre science, digital et entrepreneuriat.</h2>
+      <p class="intro reveal reveal-d2">Biologiste de formation, entrepreneur, expert européen et communicant — Guy Mordret réunit des compétences rares pour accompagner les projets à l'intersection entre innovation scientifique et développement commercial.</p>
+      <ol class="timeline">
+        <li class="tl-item reveal reveal-d1"><span class="tl-date">1998–2026</span><span class="tl-text"><strong>Fondateur et dirigeant</strong> de l'agence de communication digitale ANAXIMANDRE</span></li>
+        <li class="tl-item reveal reveal-d2"><span class="tl-date">2006–2016</span><span class="tl-text"><strong>Administrateur de la MEITO</strong> (Mission pour l'Électronique, l'Informatique et les Télécoms de l'Ouest)</span></li>
+        <li class="tl-item reveal reveal-d3"><span class="tl-date">Expert UE</span><span class="tl-text"><strong>Expert européen auprès de la DG CONNECT</strong> — e-Health et bioinformatique</span></li>
+        <li class="tl-item reveal reveal-d4"><span class="tl-date">2016–2026</span><span class="tl-text"><strong>Communication Strategist pour l'ESCI</strong> · Président du Club Bretagne Biosciences</span></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 8. RÉFÉRENCES ===================== -->
+<section class="dark refs" id="references" aria-labelledby="refs-title">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow reveal">Références</span>
+      <h2 id="refs-title" class="reveal reveal-d1">Des projets ambitieux accompagnés.</h2>
+    </div>
+    <ul class="refs-grid">
+      <li class="ref reveal reveal-d1">LEVABAG</li>
+      <li class="ref reveal reveal-d2">MITOLOGICS</li>
+      <li class="ref reveal reveal-d3">ALUNA OCÉANE</li>
+      <li class="ref reveal reveal-d1">INEXELL</li>
+      <li class="ref reveal reveal-d2">MEDECOM</li>
+      <li class="ref reveal reveal-d3">DEEP PHYSIO</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===================== 9. CONTACT ===================== -->
+<section class="contact" id="contact" aria-labelledby="contact-title">
+  <div class="container contact-grid">
+    <div>
+      <span class="eyebrow reveal">Contact</span>
+      <h2 id="contact-title" class="reveal reveal-d1">Parlons de votre projet.</h2>
+      <p class="intro reveal reveal-d2">Un premier échange, sans engagement, pour comprendre votre situation et identifier l'accompagnement le plus pertinent. Réponse sous 48 heures ouvrées.</p>
+      <div class="coords">
+        <div class="coord reveal reveal-d1">
+          <span class="coord-icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 18s6-5.2 6-10A6 6 0 0 0 4 8c0 4.8 6 10 6 10z"/><circle cx="10" cy="8" r="2.2"/></svg></span>
+          <div><div class="coord-label">Adresse</div><address class="coord-value" style="font-style:normal">3 Pen ar Menez<br>29260 Plouider, Bretagne</address></div>
+        </div>
+        <div class="coord reveal reveal-d2">
+          <span class="coord-icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="15" height="11" rx="1.5"/><path d="M3 5.5l7 5.5 7-5.5"/></svg></span>
+          <div><div class="coord-label">Email</div><div class="coord-value"><a href="mailto:contact@dielfenn.com">contact@dielfenn.com</a></div></div>
+        </div>
+        <div class="coord reveal reveal-d3">
+          <span class="coord-icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7.5"/><path d="M2.5 10h15M10 2.5c2 2.2 3 4.7 3 7.5s-1 5.3-3 7.5c-2-2.2-3-4.7-3-7.5s1-5.3 3-7.5z"/></svg></span>
+          <div><div class="coord-label">Zones d'intervention</div><div class="coord-value">Bretagne · Pays de la Loire · Normandie · Île-de-France · Aquitaine</div></div>
+        </div>
+      </div>
+      <p class="brand-note reveal reveal-d4">Dielfenn Conseil est une marque de <strong>DERV.</strong></p>
+    </div>
+
+    <form class="form reveal reveal-d2" id="contact-form" novalidate>
+      <h3>Votre demande</h3>
+      <p class="form-sub">Les champs marqués <span style="color:var(--accent-strong)">*</span> sont obligatoires.</p>
+      <div class="form-row">
+        <div class="field">
+          <label for="prenom">Prénom <span class="req">*</span></label>
+          <input id="prenom" name="prenom" type="text" autocomplete="given-name" required>
+          <span class="err">Merci d'indiquer votre prénom.</span>
+        </div>
+        <div class="field">
+          <label for="nom">Nom <span class="req">*</span></label>
+          <input id="nom" name="nom" type="text" autocomplete="family-name" required>
+          <span class="err">Merci d'indiquer votre nom.</span>
+        </div>
+      </div>
+      <div class="field">
+        <label for="entreprise">Entreprise / Projet</label>
+        <input id="entreprise" name="entreprise" type="text" autocomplete="organization">
+      </div>
+      <div class="field">
+        <label for="type">Type de projet <span class="req">*</span></label>
+        <select id="type" name="type" required>
+          <option value="" selected disabled>Sélectionnez…</option>
+          <option>Services</option>
+          <option>Commerce</option>
+          <option>Artisanat</option>
+          <option>Industrie</option>
+          <option>Entreprise innovante</option>
+          <option>Autre</option>
+        </select>
+        <span class="err">Merci de choisir un type de projet.</span>
+      </div>
+      <div class="form-row">
+        <div class="field">
+          <label for="email">Email <span class="req">*</span></label>
+          <input id="email" name="email" type="email" autocomplete="email" required>
+          <span class="err">Merci d'indiquer un email valide.</span>
+        </div>
+        <div class="field">
+          <label for="tel">Téléphone</label>
+          <input id="tel" name="tel" type="tel" autocomplete="tel">
+        </div>
+      </div>
+      <div class="field">
+        <label for="besoin">Votre besoin <span class="req">*</span></label>
+        <textarea id="besoin" name="besoin" required placeholder="Décrivez votre projet, votre stade d'avancement et vos attentes…"></textarea>
+        <span class="err">Merci de décrire brièvement votre besoin.</span>
+      </div>
+      <button type="submit" class="btn btn-primary">Envoyer ma demande <span class="arrow" aria-hidden="true">→</span></button>
+      <p class="form-legal">Vos données sont utilisées uniquement pour répondre à votre demande et ne sont jamais transmises à des tiers.</p>
+      <div class="form-success" id="form-success" role="status" aria-live="polite"></div>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- ===================== 10. FOOTER ===================== -->
+<footer class="dark footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="#top" class="logo" aria-label="Dielfenn Conseil — retour en haut de page">
+          <span class="logo-word">DIELFENN</span>
+          <span class="logo-sub">Conseil</span>
+        </a>
+        <p class="brand-txt">Vous avez l'idée. Nous avons les outils.<br>Accompagnement des projets innovants et des dirigeants de TPE/PME.</p>
+        <p class="brand-txt">Une marque de DERV.</p>
+      </div>
+      <div>
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#approche">Approche</a></li>
+          <li><a href="#pour-qui">Pour qui</a></li>
+          <li><a href="#themes">Domaines</a></li>
+          <li><a href="#offres">Offres</a></li>
+          <li><a href="#guy-mordret">Guy Mordret</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Zones</h4>
+        <ul>
+          <li>Bretagne</li>
+          <li>Pays de la Loire</li>
+          <li>Normandie</li>
+          <li>Île-de-France</li>
+          <li>Aquitaine</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <nav aria-label="Liens légaux">
+        <span>© <span id="year">2026</span> Dielfenn Conseil</span>
+        <a href="#mentions-legales">Mentions légales</a>
+        <a href="#rgpd">RGPD</a>
+      </nav>
+      <span class="credit">Site réalisé par Payment Flow</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+  document.body.classList.remove('no-js');
+
+  var NAV_H = 68;
+  var nav = document.getElementById('nav');
+  var burger = document.getElementById('burger');
+  var menu = document.getElementById('nav-links');
+  var navLinks = Array.prototype.slice.call(menu.querySelectorAll('a.link'));
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- Nav : fond au scroll ---------- */
+  function onScroll() {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+    spy();
+  }
+
+  /* ---------- Scrollspy ---------- */
+  var spyTargets = navLinks.map(function (a) {
+    return { link: a, section: document.querySelector(a.getAttribute('href')) };
+  }).filter(function (t) { return t.section; });
+
+  function spy() {
+    var pos = window.scrollY + NAV_H + window.innerHeight * 0.3;
+    var current = null;
+    spyTargets.forEach(function (t) {
+      if (t.section.offsetTop <= pos) current = t;
+    });
+    // Au-delà de la dernière section suivie (ex. thèmes entre deux), on garde la plus proche au-dessus
+    spyTargets.forEach(function (t) {
+      var on = t === current && (pos < t.section.offsetTop + t.section.offsetHeight);
+      t.link.classList.toggle('active', on);
+      if (on) t.link.setAttribute('aria-current', 'true'); else t.link.removeAttribute('aria-current');
+    });
+  }
+
+  var ticking = false;
+  window.addEventListener('scroll', function () {
+    if (!ticking) { requestAnimationFrame(function () { onScroll(); ticking = false; }); ticking = true; }
+  }, { passive: true });
+  window.addEventListener('resize', spy);
+  onScroll();
+
+  /* ---------- Menu mobile ---------- */
+  function setMenu(open) {
+    menu.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    burger.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+    document.body.classList.toggle('menu-open', open);
+  }
+  burger.addEventListener('click', function () { setMenu(!menu.classList.contains('open')); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && menu.classList.contains('open')) { setMenu(false); burger.focus(); } });
+  window.addEventListener('resize', function () { if (window.innerWidth > 860 && menu.classList.contains('open')) setMenu(false); });
+
+  /* ---------- Smooth scroll avec offset ---------- */
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    var id = a.getAttribute('href');
+    if (id.length < 2) return;
+    var target = document.querySelector(id);
+    if (!target) return;
+    e.preventDefault();
+    setMenu(false);
+    var y = id === '#top' ? 0 : target.getBoundingClientRect().top + window.scrollY - NAV_H;
+    window.scrollTo({ top: y, behavior: reduceMotion ? 'auto' : 'smooth' });
+    if (history.replaceState) history.replaceState(null, '', id);
+  });
+
+  /* ---------- Scroll reveal ---------- */
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && !reduceMotion) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(function (el) { io.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('in'); });
+  }
+
+  /* ---------- Formulaire (envoi via client mail) ---------- */
+  var form = document.getElementById('contact-form');
+  var success = document.getElementById('form-success');
+  var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+  function validateField(el) {
+    var field = el.closest('.field');
+    var ok = el.value.trim() !== '';
+    if (el.type === 'email') ok = emailRe.test(el.value.trim());
+    if (!el.required && el.type !== 'email') ok = true;
+    field.classList.toggle('invalid', !ok);
+    el.setAttribute('aria-invalid', ok ? 'false' : 'true');
+    return ok;
+  }
+
+  form.querySelectorAll('[required]').forEach(function (el) {
+    el.addEventListener('blur', function () { if (el.value) validateField(el); });
+    el.addEventListener('input', function () { if (el.closest('.field').classList.contains('invalid')) validateField(el); });
+    el.addEventListener('change', function () { if (el.closest('.field').classList.contains('invalid')) validateField(el); });
+  });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var firstInvalid = null;
+    form.querySelectorAll('[required]').forEach(function (el) {
+      if (!validateField(el) && !firstInvalid) firstInvalid = el;
+    });
+    if (firstInvalid) { firstInvalid.focus(); return; }
+
+    var v = function (id) { return document.getElementById(id).value.trim(); };
+    var subject = 'Demande de contact — ' + v('prenom') + ' ' + v('nom') + (v('entreprise') ? ' (' + v('entreprise') + ')' : '');
+    var body = [
+      'Prénom : ' + v('prenom'),
+      'Nom : ' + v('nom'),
+      'Entreprise / Projet : ' + (v('entreprise') || '—'),
+      'Type de projet : ' + v('type'),
+      'Email : ' + v('email'),
+      'Téléphone : ' + (v('tel') || '—'),
+      '',
+      'Besoin :',
+      v('besoin')
+    ].join('\n');
+
+    window.location.href = 'mailto:contact@dielfenn.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    success.textContent = 'Merci ' + v('prenom') + ' ! Votre messagerie va s’ouvrir avec votre demande pré-remplie. Si rien ne se passe, écrivez-nous directement à contact@dielfenn.com.';
+    success.classList.add('show');
+  });
+
+  /* ---------- Année footer ---------- */
+  document.getElementById('year').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
